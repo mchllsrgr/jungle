@@ -1,3 +1,19 @@
-<%= debug product %>
-<%= debug quantity %>
-<%= debug line_total %>
+<tr>
+  <td>
+    <%= product %> #img
+  </td>
+  <td>
+    <h4><%= product %></h4> #name
+    <br>
+    <p><%= product %></p> #desc
+  </td>
+  <td>
+    <%= humanized_money_with_symbol line_price / 100 %> #price
+  </td>
+  <td>
+    <%= quantity %>
+  </td>
+  <td>
+    <%= humanized_money_with_symbol line_total / 100 %>
+  </td>
+</tr>
