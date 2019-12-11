@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     <% @line_items.each do |item| %>
-      <%= render 'line_item', product: item[:product_id], quantity: item[:quantity], line_total: item[:total_price_cents], line_price: item[:item_price_cents] %>
+      <%= render 'line_item', line_item: item %>
     <% end %>
     </tbody>
     <tfoot>

@@ -2,9 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @line_items = LineItem.joins(:order).where(order: params[:id])
-    @line_ids = @line_items.map{|item| item.product_id}
-    @products = Product.find(@line_ids)
+    @line_items = @order.line_items
   end
 
   def create

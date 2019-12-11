@@ -1,19 +1,19 @@
 <tr>
   <td>
-    <%= product %> #img
+    <img src="<%= line_item.product.image %>">
   </td>
   <td>
-    <h4><%= product %></h4> #name
+    <h4><%= line_item.product.name %></h4>
     <br>
-    <p><%= product %></p> #desc
+    <p><%= line_item.product.description %></p>
   </td>
   <td>
-    <%= humanized_money_with_symbol line_price / 100 %>
+    <%= humanized_money_with_symbol line_item.item_price_cents / 100 %>
   </td>
   <td>
-    <%= quantity %>
+    <%= line_item.quantity %>
   </td>
   <td>
-    <%= humanized_money_with_symbol line_total / 100 %>
+    <%= humanized_money_with_symbol line_item.total_price_cents / 100 %>
   </td>
 </tr>
