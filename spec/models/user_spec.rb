@@ -38,6 +38,17 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 5 characters)", "Password confirmation is too short (minimum is 5 characters)")
     end
-
   end
+
+  describe '.authenticate_with_credentials' do
+    it "must log in with correct credentials" do
+      User.create(first_name: "First", last_name: "Last", email: "e@mail.com", password: "12345", password_confirmation: "12345")
+      expect(User.authenticate_with_credentials("e@mail.com", "12345")).to be_truthy
+    end
+    it "must log in with spaces around email" do
+      User.create(first_name: "First", last_name: "Last", email: "example@domain.com", password: "12345", password_confirmation: "12345")
+      expect(User.authenticate_with_credentials(" example@domain.com ", "12345")).to be_truthy
+    end
+  end
+
 end
