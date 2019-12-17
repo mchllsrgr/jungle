@@ -45,6 +45,14 @@ RSpec.describe User, type: :model do
       User.create(first_name: "First", last_name: "Last", email: "e@mail.com", password: "12345", password_confirmation: "12345")
       expect(User.authenticate_with_credentials("e@mail.com", "12345")).to be_truthy
     end
+    it "must reject empty email" do
+      User.create(first_name: "First", last_name: "Last", email: "e@mail.com", password: "12345", password_confirmation: "12345")
+      expect(User.authenticate_with_credentials(nil, "12345")).to be_falsey
+    end
+    it "must reject empty password" do
+      User.create(first_name: "First", last_name: "Last", email: "e@mail.com", password: "12345", password_confirmation: "12345")
+      expect(User.authenticate_with_credentials("e@mail.com", nil)).to be_falsey
+    end
     it "must log in with spaces around email" do
       User.create(first_name: "First", last_name: "Last", email: "example@domain.com", password: "12345", password_confirmation: "12345")
       expect(User.authenticate_with_credentials(" example@domain.com ", "12345")).to be_truthy

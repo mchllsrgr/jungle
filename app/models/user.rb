@@ -9,11 +9,15 @@ class User < ActiveRecord::Base
   before_save :downcase_email
   
   def self.authenticate_with_credentials(email, password)
-    @user = User.find_by_email(email.strip.downcase)
-    if @user.authenticate(password)
-      @user
+    if email.nil? || password.nil?
+      nil
     else
-     nil
+      @user = User.find_by_email(email.strip.downcase)
+      if @user && @user.authenticate(password)
+        @user
+      else
+        nil
+      end
     end
   end
 
