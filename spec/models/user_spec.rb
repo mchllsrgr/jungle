@@ -17,5 +17,15 @@ RSpec.describe User, type: :model do
       expect(@user2).to_not be_valid
       expect(@user2.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+
+    it "must be created with a unique email" do
+      @user = User.create(first_name: "First", last_name: "Last", email: "ABC@DEF.COM", password: "password", password_confirmation: "password")
+      expect(@user).to be_valid
+
+      @user2 = User.new(first_name: "First", last_name: "Last", email: "abc@def.com", password: "password", password_confirmation: "password")
+      expect(@user2).to_not be_valid
+
+    end
+
   end
 end
