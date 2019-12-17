@@ -12,6 +12,10 @@ RSpec.describe User, type: :model do
       @user = User.new(first_name: "First", last_name: "Last", email: "e@mail.com", password: nil, password_confirmation: nil)
       expect(@user).to_not be_valid
       expect(@user.errors.full_messages).to include("Password can't be blank", "Password confirmation can't be blank")
+
+      @user2 = User.new(first_name: "First", last_name: "Last", email: "e@mail.com", password: "abc", password_confirmation: "def")
+      expect(@user2).to_not be_valid
+      expect(@user2.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
   end
 end
