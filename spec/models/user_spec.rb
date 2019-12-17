@@ -49,6 +49,10 @@ RSpec.describe User, type: :model do
       User.create(first_name: "First", last_name: "Last", email: "example@domain.com", password: "12345", password_confirmation: "12345")
       expect(User.authenticate_with_credentials(" example@domain.com ", "12345")).to be_truthy
     end
+    it "must log in with case insensitive email" do
+      User.create(first_name: "First", last_name: "Last", email: "eXample@domain.COM", password: "12345", password_confirmation: "12345")
+      expect(User.authenticate_with_credentials("EXAMPLe@DOMAIN.CoM", "12345")).to be_truthy
+    end
   end
 
 end
